@@ -1358,6 +1358,7 @@
         perspective: 1300px;
         touch-action: pan-y;
         border-radius: 30px;
+        overflow: hidden;
       }
       .cs {
         position: absolute;
@@ -1548,6 +1549,207 @@
           grid-template-columns: 1fr;
         }
         .cfb {
+          display: none;
+        }
+      }
+      @media (max-width: 640px) {
+        html {
+          scroll-padding-top: calc(112px + env(safe-area-inset-top, 0px));
+        }
+        body {
+          background-attachment: scroll;
+        }
+        .wrap {
+          padding-right: 16px;
+          padding-left: 16px;
+        }
+        .bar {
+          height: auto;
+          min-height: 58px;
+          flex-wrap: wrap;
+          gap: 0 10px;
+        }
+        .logo {
+          font-size: 1.25rem;
+        }
+        .logo span {
+          display: inline;
+        }
+        #theme {
+          margin-left: auto;
+        }
+        nav {
+          order: 3;
+          flex: 0 0 100%;
+          width: 100%;
+          margin: 0;
+          padding: 2px 0 8px;
+          gap: 4px;
+        }
+        nav a {
+          min-height: 42px;
+          display: inline-flex;
+          align-items: center;
+          padding: 7px 12px;
+        }
+        section {
+          padding-top: 64px;
+        }
+        .hero {
+          padding-top: 30px;
+        }
+        .hgrid {
+          gap: 30px;
+        }
+        .hero h1 {
+          font-size: clamp(2.65rem, 13vw, 4.5rem);
+        }
+        .hero .sub {
+          font-size: 1rem !important;
+        }
+        .hero .row {
+          gap: 10px;
+        }
+        .hero .row .btn {
+          flex: 1 1 145px;
+          justify-content: center;
+          min-height: 48px;
+          text-align: center;
+        }
+        .chipr {
+          gap: 8px;
+          margin: 18px 0;
+        }
+        .chipr .stk {
+          font-size: 0.8rem;
+          padding: 5px 11px;
+        }
+        .hart {
+          margin: 4px 6px;
+        }
+        .term {
+          font-size: 0.76rem;
+        }
+        #out {
+          height: 190px;
+          padding: 12px;
+        }
+        .tick {
+          margin-top: 48px;
+        }
+        .tick div {
+          font-size: 1.2rem;
+        }
+        .notes,
+        .fbn {
+          grid-template-columns: 1fr;
+          gap: 14px;
+          margin-top: 36px;
+        }
+        .note,
+        .fbn button {
+          transform: none !important;
+        }
+        .stats {
+          gap: 10px;
+          margin-top: 28px;
+        }
+        .stats .box {
+          padding: 12px 8px;
+        }
+        .stats b {
+          font-size: 2.5rem;
+        }
+        .mtabs {
+          gap: 10px;
+          margin: 26px 0 18px;
+        }
+        .mtab {
+          padding: 12px 14px;
+        }
+        .box {
+          padding: 18px;
+          border-radius: 22px;
+        }
+        .mpanel {
+          gap: 16px;
+        }
+        .pg {
+          gap: 10px;
+        }
+        .cg {
+          gap: 22px;
+          margin-top: 28px;
+        }
+        .cf {
+          height: 330px;
+          margin-top: 30px;
+        }
+        .cs {
+          width: min(500px, 84vw);
+          border-radius: 24px;
+        }
+        .cap2 {
+          left: 10px;
+          right: 10px;
+          gap: 8px;
+          padding: 9px 10px;
+        }
+        .cap2 b {
+          font-size: 1rem;
+        }
+        .crew {
+          gap: 16px;
+          margin-top: 30px;
+        }
+        .fc {
+          height: 370px;
+        }
+        .q {
+          margin-top: 24px;
+          padding: 20px 20px 20px 26px;
+        }
+        footer {
+          margin-top: 64px;
+          padding-top: 30px;
+        }
+        footer .wrap {
+          align-items: flex-start;
+          flex-direction: column;
+          gap: 8px;
+        }
+        input,
+        textarea,
+        select,
+        #code {
+          font-size: 16px;
+        }
+      }
+      @media (max-width: 380px) {
+        .wrap {
+          padding-right: 14px;
+          padding-left: 14px;
+        }
+        .logo {
+          font-size: 1.1rem;
+        }
+        .hero h1 {
+          font-size: clamp(2.4rem, 12.5vw, 3.1rem);
+        }
+        .hero .row .btn {
+          flex-basis: 100%;
+        }
+        .box {
+          padding: 15px;
+        }
+        .notes,
+        .fbn {
+          gap: 12px;
+        }
+        .cf {
+          height: 300px;
+        }
+        .cap2 small {
           display: none;
         }
       }
@@ -1884,13 +2086,20 @@
     <script>
       // Isi link di sini. "#" artinya belum diisi.
       const LINKS = {
-        dunia: "#",
-        html: "#",
-        ai: "#",
+        dunia:
+          "https://drive.google.com/file/d/1uEcIKXeV9YR0RaTFiG4xnOlKSvvzr8hC/view?usp=sharing",
+        html:
+          "https://drive.google.com/file/d/1fGtuhyNds6HR066nbVSGLedXydfHUg0c/view?usp=sharing",
+        ai: "https://drive.google.com/file/d/17Qyk-_eYUFQwjy5x4OodNVV4oNL9biCD/view?usp=sharing",
         photos: "#",
         kontak: "#",
         sertifikat: "https://forms.gle/X8mo1nfwW7n1RVxt8",
         feedback: "https://forms.gle/P1X3EoNGMSPHeNvG6",
+      };
+      const PDFS = {
+        dunia: "Di-Balik-Layar-Dunia-Digital.pdf",
+        html: "Belajar-HTML-dan-CSS (2).pdf",
+        ai: "AI-bukan-sihir-AI-adalah-cara-baru-bekerja.pdf",
       };
       const TEAM = [
         {
@@ -2599,8 +2808,10 @@
           m.pts.map((p) => "<li>" + p + "</li>").join("") +
           "</ul><div class='row'><a class='btn s' id='lv'>Lihat materi</a><a class='btn s p' id='dl'>Unduh PDF</a></div>";
         link($("#lv"), m.k);
-        link($("#dl"), m.k);
-        m.lab($("#ml"));
+          const download = $("#dl");
+          download.href = encodeURI("./" + PDFS[m.k]);
+          download.download = PDFS[m.k];
+          m.lab($("#ml"));
       }
       M.forEach((m, i) => {
         const b = el(
