@@ -831,10 +831,187 @@
       }
       footer .wrap {
         display: flex;
-        justify-content: space-between;
-        gap: 14px;
-        flex-wrap: wrap;
+        flex-direction: column;
         align-items: center;
+        gap: 20px;
+        text-align: center;
+      }
+      .footer-brand-stage {
+        position: relative;
+        display: grid;
+        place-items: center;
+        width: 100%;
+        min-height: 136px;
+        overflow: hidden;
+      }
+      .footer-brand-copy,
+      .footer-brand-logos {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+      }
+      .footer-brand-copy {
+        animation: footer-copy 8s ease-in-out infinite;
+      }
+      .footer-brand-copy strong {
+        font-size: clamp(1.65rem, 5vw, 3rem);
+        line-height: 1.1;
+      }
+      .footer-brand-copy strong span {
+        color: var(--butter);
+        display: inline-block;
+        padding: 0 0.08em;
+      }
+      .footer-brand-copy small {
+        color: var(--butter);
+        font-size: 1.4rem;
+      }
+      .footer-brand-logos {
+        flex-direction: row;
+        gap: clamp(12px, 4vw, 30px);
+        opacity: 0;
+        transform: translateY(12px) scale(0.96);
+        animation: footer-logos 8s ease-in-out infinite;
+      }
+      .footer-brand-logos img {
+        display: block;
+        width: clamp(100px, 24vw, 170px);
+        height: 74px;
+        object-fit: contain;
+        padding: 8px 12px;
+        border-radius: 16px;
+        background: #fff;
+        box-shadow: 4px 4px 0 var(--butter);
+      }
+      .footer-brand-logos img:last-child {
+        width: 74px;
+        padding: 6px;
+      }
+      .footer-brand-logos span {
+        color: var(--butter);
+        font:
+          400 clamp(1.8rem, 5vw, 2.8rem) / 1 "Bagel Fat One",
+          system-ui,
+          sans-serif;
+      }
+      .footer-meta {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 8px 18px;
+        width: 100%;
+        padding-top: 18px;
+        border-top: 1px solid color-mix(in srgb, var(--bg) 28%, transparent);
+      }
+      .footer-meta .hand {
+        font-size: 1.8rem;
+      }
+      .footer-motivation {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        min-height: 2.2em;
+        padding: 5px 12px;
+        border: 1px solid color-mix(in srgb, var(--butter) 55%, transparent);
+        border-radius: 999px;
+        background: color-mix(in srgb, var(--butter) 12%, transparent);
+        color: inherit;
+        font: inherit;
+        cursor: pointer;
+        touch-action: manipulation;
+        transition:
+          background 0.2s,
+          transform 0.2s;
+      }
+      .footer-motivation:hover {
+        background: color-mix(in srgb, var(--butter) 22%, transparent);
+        transform: translateY(-2px);
+      }
+      .footer-motivation:active {
+        transform: scale(0.97);
+      }
+      .footer-motivation::after {
+        content: "↻";
+        color: var(--butter);
+        font: 800 1rem/1 Nunito, system-ui, sans-serif;
+      }
+      .footer-motivation .hand {
+        white-space: nowrap;
+      }
+      .footer-motivation .hand.changing {
+        animation: footer-motivation-pop 0.3s ease-out;
+      }
+      .footer-meta .mono {
+        font-size: 0.75rem;
+        color: color-mix(in srgb, var(--bg) 78%, transparent);
+      }
+      @keyframes footer-copy {
+        0%,
+        39% {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+        48%,
+        91% {
+          opacity: 0;
+          transform: translateY(-12px) scale(0.96);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+      @keyframes footer-logos {
+        0%,
+        42% {
+          opacity: 0;
+          transform: translateY(12px) scale(0.96);
+        }
+        52%,
+        88% {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+        98%,
+        100% {
+          opacity: 0;
+          transform: translateY(-12px) scale(0.96);
+        }
+      }
+      @keyframes footer-motivation-pop {
+        from {
+          opacity: 0;
+          transform: translateY(0.3em);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .footer-brand-stage {
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+          min-height: 0;
+          overflow: visible;
+        }
+        .footer-brand-copy,
+        .footer-brand-logos {
+          position: relative;
+          inset: auto;
+          opacity: 1;
+          transform: none;
+        }
+        .footer-motivation .hand.changing {
+          animation: none;
+        }
       }
       #toast {
         position: fixed;
@@ -1714,9 +1891,22 @@
           padding-top: 30px;
         }
         footer .wrap {
-          align-items: flex-start;
+          align-items: center;
+          gap: 14px;
+        }
+        .footer-brand-stage {
+          min-height: 118px;
+        }
+        .footer-brand-logos img {
+          height: 62px;
+          padding: 7px 9px;
+        }
+        .footer-brand-logos img:last-child {
+          width: 62px;
+        }
+        .footer-meta {
           flex-direction: column;
-          gap: 8px;
+          gap: 4px;
         }
         input,
         textarea,
@@ -1779,7 +1969,7 @@
         <div class="wrap">
           <div class="hgrid">
             <div>
-              <span class="kick">hai, anak SMA! 👋</span>
+              <span class="kick">hai, Teman2 semua! 👋</span>
               <h1><span class="a">IDN</span><span class="b">Mengajar</span></h1>
               <div class="chipr">
                 <span class="stk">26–30 Okt 2026</span
@@ -2075,10 +2265,33 @@
     </main>
     <footer>
       <div class="wrap">
-        <span class="hand" style="font-size: 2.2rem">Semangat terus!</span
-        ><span class="mono" style="font-size: 0.8rem"
-          >© 2026 IDN Mengajar · Surakarta</span
+        <div
+          class="footer-brand-stage"
+          role="group"
+          aria-label="Kolaborasi IDN Mengajar dan SMA Batik 1 Surakarta"
         >
+          <div class="footer-brand-copy" aria-hidden="true">
+            <strong class="bag">IDN Mengajar <span>×</span> SMA Batik 1 Surakarta</strong>
+            <small class="hand">Belajar bareng, tumbuh bareng!</small>
+          </div>
+          <div class="footer-brand-logos" aria-hidden="true">
+            <img src="idn.png" alt="" />
+            <span>×</span>
+            <img src="batik.png" alt="" />
+          </div>
+        </div>
+        <div class="footer-meta">
+          <button
+            class="footer-motivation"
+            id="footer-motivation"
+            type="button"
+            aria-label="Ganti kata-kata motivasi"
+            title="Klik untuk ganti kata-kata motivasi"
+          >
+            <span class="hand" id="footer-motivation-text">Semangat terus!</span>
+          </button>
+          <span class="mono">Kolaborasi seru · Surakarta · 2026</span>
+        </div>
       </div>
     </footer>
     <div id="toast" role="status"></div>
@@ -3085,6 +3298,49 @@
             : matchMedia("(prefers-color-scheme:dark)").matches;
         r.dataset.theme = d ? "light" : "dark";
       };
+
+      const footerMotivation = $("#footer-motivation");
+      if (footerMotivation) {
+        const slogans = [
+            "Semangat terus!",
+            "Gas terus, jangan kendor!",
+            "Belajar santai, hasil mantap!",
+            "Berani coba, siap berkarya!",
+            "Kecil langkah, besar karya!",
+          ],
+          sloganText = $("#footer-motivation-text"),
+          reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+        let sloganIndex = 0,
+          sloganTimer;
+        const stopSloganTimer = () => clearInterval(sloganTimer);
+        const startSloganTimer = () => {
+          stopSloganTimer();
+          if (!reduceMotion && !document.hidden)
+            sloganTimer = setInterval(showNextSlogan, 4500);
+        };
+        function showNextSlogan() {
+          sloganIndex = (sloganIndex + 1) % slogans.length;
+          sloganText.textContent = slogans[sloganIndex];
+          if (!reduceMotion)
+            sloganText.animate(
+              [
+                { opacity: 0, transform: "translateY(.3em)" },
+                { opacity: 1, transform: "translateY(0)" },
+              ],
+              { duration: 300, easing: "ease-out" },
+            );
+        }
+        footerMotivation.onclick = () => {
+          showNextSlogan();
+          startSloganTimer();
+        };
+        footerMotivation.onpointerenter = stopSloganTimer;
+        footerMotivation.onpointerleave = startSloganTimer;
+        footerMotivation.onfocus = stopSloganTimer;
+        footerMotivation.onblur = startSloganTimer;
+        document.addEventListener("visibilitychange", startSloganTimer);
+        startSloganTimer();
+      }
     </script>
   </body>
 </html>
