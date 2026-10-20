@@ -900,16 +900,93 @@
       }
       .footer-meta {
         display: flex;
-        justify-content: center;
+        flex-direction: column;
         align-items: center;
-        flex-wrap: wrap;
-        gap: 8px 18px;
-        width: 100%;
-        padding-top: 18px;
-        border-top: 1px solid color-mix(in srgb, var(--bg) 28%, transparent);
+        gap: 14px;
+        width: min(100%, 820px);
+        padding: 20px;
+        border: 1px solid color-mix(in srgb, var(--butter) 38%, transparent);
+        border-radius: 24px;
+        background:
+          radial-gradient(
+            circle at 8% 0%,
+            color-mix(in srgb, var(--lilac) 18%, transparent),
+            transparent 38%
+          ),
+          color-mix(in srgb, var(--bg) 7%, transparent);
+        box-shadow: 5px 5px 0 color-mix(in srgb, var(--butter) 30%, transparent);
       }
       .footer-meta .hand {
         font-size: 1.8rem;
+      }
+      .footer-credits {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 10px;
+        width: 100%;
+      }
+      .footer-credit {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+        min-width: 0;
+        min-height: 112px;
+        padding: 15px 10px;
+        border: 2px solid #16264f;
+        border-radius: 18px 18px 8px 18px;
+        color: #16264f;
+        box-shadow: 4px 4px 0 #08122a;
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.2s ease;
+      }
+      .footer-credit:nth-child(1) {
+        background: var(--butter);
+        transform: rotate(-1deg);
+      }
+      .footer-credit:nth-child(2) {
+        background: var(--pink);
+        transform: translateY(-4px) rotate(1deg);
+      }
+      .footer-credit:nth-child(3) {
+        background: var(--sky);
+        transform: rotate(-0.6deg);
+      }
+      .footer-credit:hover {
+        transform: translateY(-5px) rotate(0);
+        box-shadow: 2px 6px 0 #08122a;
+      }
+      .footer-credit-label {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        color: #16264f;
+        font: 800 0.64rem/1.2 Nunito, system-ui, sans-serif;
+        letter-spacing: 0.09em;
+        text-transform: uppercase;
+      }
+      .footer-credit-label::before {
+        content: "✦";
+        color: #2d59d6;
+        font-size: 0.8rem;
+      }
+      .footer-credit strong {
+        font-size: 0.88rem;
+        line-height: 1.35;
+      }
+      .footer-credit .mono {
+        color: #16264f;
+      }
+      .footer-credit-author strong {
+        color: #16264f;
+        font: 400 1.8rem/1 "Caveat Brush", cursive;
+      }
+      .footer-credit-author strong::after {
+        content: " ✨";
+        font: 0.9rem/1 system-ui, sans-serif;
       }
       .footer-motivation {
         display: inline-flex;
@@ -918,27 +995,30 @@
         gap: 8px;
         min-height: 2.2em;
         padding: 5px 12px;
-        border: 1px solid color-mix(in srgb, var(--butter) 55%, transparent);
+        border: 2px solid var(--butter);
         border-radius: 999px;
-        background: color-mix(in srgb, var(--butter) 12%, transparent);
-        color: inherit;
-        font: inherit;
+        background: var(--mint);
+        color: #16264f;
+        font: 800 1rem Nunito, system-ui, sans-serif;
+        box-shadow: 3px 3px 0 #08122a;
         cursor: pointer;
         touch-action: manipulation;
         transition:
           background 0.2s,
-          transform 0.2s;
+          transform 0.2s,
+          box-shadow 0.2s;
       }
       .footer-motivation:hover {
-        background: color-mix(in srgb, var(--butter) 22%, transparent);
+        background: var(--sky);
         transform: translateY(-2px);
+        box-shadow: 2px 5px 0 #08122a;
       }
       .footer-motivation:active {
         transform: scale(0.97);
       }
       .footer-motivation::after {
         content: "↻";
-        color: var(--butter);
+        color: #2d59d6;
         font: 800 1rem/1 Nunito, system-ui, sans-serif;
       }
       .footer-motivation .hand {
@@ -948,7 +1028,7 @@
         animation: footer-motivation-pop 0.3s ease-out;
       }
       .footer-meta .mono {
-        font-size: 0.75rem;
+        font-size: 0.72rem;
         color: color-mix(in srgb, var(--bg) 78%, transparent);
       }
       @keyframes footer-copy {
@@ -1905,8 +1985,20 @@
           width: 62px;
         }
         .footer-meta {
-          flex-direction: column;
-          gap: 4px;
+          gap: 12px;
+          padding: 14px 12px;
+          border-radius: 20px;
+        }
+        .footer-credits {
+          grid-template-columns: 1fr;
+          gap: 8px;
+        }
+        .footer-credit {
+          min-height: 76px;
+          transform: none;
+        }
+        .footer-credit:hover {
+          transform: none;
         }
         input,
         textarea,
@@ -2290,7 +2382,21 @@
           >
             <span class="hand" id="footer-motivation-text">Semangat terus!</span>
           </button>
-          <span class="mono">Kolaborasi seru · Surakarta · 2026</span>
+          <div class="footer-credits">
+            <div class="footer-credit">
+              <span class="footer-credit-label">Copyright</span>
+              <strong class="mono">© 2026 IDN Mengajar</strong>
+              <span class="mono">All rights reserved.</span>
+            </div>
+            <div class="footer-credit footer-credit-author">
+              <span class="footer-credit-label">Made with curiosity by</span>
+              <strong>Ahsan ✦</strong>
+            </div>
+            <div class="footer-credit">
+              <span class="footer-credit-label">A creative collaboration</span>
+              <strong class="mono">Surakarta · Indonesia</strong>
+            </div>
+          </div>
         </div>
       </div>
     </footer>
